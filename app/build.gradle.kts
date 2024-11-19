@@ -80,4 +80,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.3")
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
+
+        implementation("com.google.accompanist:accompanist-pager:0.24.3-alpha")
+
 }
