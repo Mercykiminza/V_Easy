@@ -73,7 +73,7 @@ fun HomeScreen(navController: NavHostController? = null) {
                         Spacer(modifier = Modifier.width(8.dp)) // Space between image and text
 
                         Text(
-                            "Welcome Emilly",
+                            "Welcome Mercy",
                             fontWeight = FontWeight.Bold,
                             fontSize = 24.sp,
                             color = Color.White // White text for visibility on purple background
@@ -97,16 +97,16 @@ fun HomeScreen(navController: NavHostController? = null) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     FinanceCard(
-                        title = "Income",
+                        title = "Money in",
                         amount = income,
                         color = Color.White ,// Green
-                        backgroundColor = (Color.Blue),
+                        backgroundColor = (Color.Green),
                         transactionIcon = Icons.Default.AccountBalanceWallet
 
 
                     )
                     FinanceCard(
-                        title = "Expenses",
+                        title = "Money out",
                         amount = expenses,
                         color = Color.White, // Red
                         backgroundColor = Color.Red
