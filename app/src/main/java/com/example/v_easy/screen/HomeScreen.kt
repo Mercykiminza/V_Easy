@@ -21,7 +21,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -140,8 +142,8 @@ fun FinanceCard(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically, // Vertically align the icon and text
         modifier = Modifier.padding(3.dp)
-                .background(backgroundColor, RoundedCornerShape(8.dp)) // Rounded corners for the background
-        .padding(10.dp) // Padding inside the container
+            .background(backgroundColor, RoundedCornerShape(8.dp)) // Rounded corners for the background
+            .padding(10.dp) // Padding inside the container
     ) {
         // Displaying the icon
         Icon(
@@ -172,9 +174,9 @@ fun FinanceCard(
 
 
 
+
 @Composable
 fun SpendFrequencyGraph() {
-    // Placeholder for the spend frequency graph
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -182,15 +184,15 @@ fun SpendFrequencyGraph() {
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("Spend Frequency Graph")
-        }
+        Image(
+            painter = painterResource(id = R.drawable.trends),
+            contentDescription = "Frequency graph",
+            modifier = Modifier
+                .fillMaxSize(), // Fill the entire Card
+            contentScale = ContentScale.FillBounds // Make the image fill the bounds
+        )
     }
 }
-
 
 
 data class Transaction(
@@ -206,6 +208,11 @@ enum class TransactionCategory(
     val iconTint: Color,
     val icon: @Composable () -> Unit
 ) {
+    INCOME(
+        backgroundColor = Color(0xFFE8F5E9),
+        iconTint = Color(0xFF4CAF50),
+        icon = { Icon(Icons.Default.AccountBalanceWallet, contentDescription = null) }
+    ),
     SHOPPING(
         backgroundColor = Color(0xFFFFF3E0),
         iconTint = Color(0xFFFF9800),
@@ -232,7 +239,6 @@ fun RecentTransactions(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        // Header for the Recent Transactions
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -253,14 +259,28 @@ fun RecentTransactions(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Sample transactions
+        // Updated transactions with both positive and negative amounts
         val transactions = listOf(
+            Transaction(
+                type = "Salary",
+                description = "Monthly salary",
+                amount = 2500.0, // Positive amount
+                time = "09:00 AM",
+                category = TransactionCategory.INCOME
+            ),
             Transaction(
                 type = "Shopping",
                 description = "Buy some grocery",
                 amount = -120.0,
                 time = "10:00 AM",
                 category = TransactionCategory.SHOPPING
+            ),
+            Transaction(
+                type = "Freelance",
+                description = "Web design project",
+                amount = 350.0, // Positive amount
+                time = "02:15 PM",
+                category = TransactionCategory.INCOME
             ),
             Transaction(
                 type = "Subscription",
@@ -275,23 +295,22 @@ fun RecentTransactions(
                 amount = -32.0,
                 time = "07:30 PM",
                 category = TransactionCategory.FOOD
-            ),
-            // Add more sample transactions if needed
+            )
         )
 
-        // Scrollable list of transactions
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
             items(transactions.size) { index ->
                 TransactionItem(transaction = transactions[index])
                 if (index < transactions.size - 1) {
-                    Spacer(modifier = Modifier.height(12.dp)) // Space between items
+                    Spacer(modifier = Modifier.height(12.dp))
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun TransactionItem(transaction: Transaction) {
@@ -342,10 +361,10 @@ fun TransactionItem(transaction: Transaction) {
             horizontalAlignment = Alignment.End
         ) {
             Text(
-                text = "- Ksh ${Math.abs(transaction.amount)}",
+                text = if (transaction.amount > 0) "+ Ksh ${transaction.amount}" else "- Ksh ${Math.abs(transaction.amount)}",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
-                color = Color.Red
+                color = if (transaction.amount > 0) Color.Green else Color.Red
             )
             Text(
                 text = transaction.time,

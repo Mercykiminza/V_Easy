@@ -133,7 +133,7 @@ fun TransactionScreen(navController: NavHostController? = null) {
         ) {
             item {
                 Text(
-                    text = "Expenses",
+                    text = "Top categories",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.padding(bottom = 16.dp)

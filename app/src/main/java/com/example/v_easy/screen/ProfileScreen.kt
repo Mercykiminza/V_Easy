@@ -63,7 +63,7 @@ fun ProfileScreen(navController: NavHostController? = null) {
                             color = Color.Gray
                         )
                         Text(
-                            text = "Iriana Saliha",
+                            text = "Mercy Kiminza",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )

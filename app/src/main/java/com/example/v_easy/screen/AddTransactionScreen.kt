@@ -218,7 +218,7 @@ fun AddTransactionScreen(navController: NavHostController) {
                 unfocusedBorderColor = Color.White.copy(alpha = 0.5f),
                 focusedBorderColor = Color.White
             ),
-            prefix = { Text("$", color = Color.White) },
+            prefix = { Text("Ksh ", color = Color.White) },
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
