@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("dagger.hilt.android.plugin")
+   // id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
     alias(libs.plugins.google.gms.google.services)
 
@@ -74,8 +74,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.navigation:navigation-compose:2.5.1")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha02")
-    implementation("com.google.dagger:hilt-android:2.48")
-    ksp("com.google.dagger:hilt-android-compiler:2.48")  // Keep this
+    //implementation("com.google.dagger:hilt-android:2.48")
+    //ksp("com.google.dagger:hilt-android-compiler:2.48")  // Keep this
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.3")
     implementation("androidx.core:core-splashscreen:1.0.0")
